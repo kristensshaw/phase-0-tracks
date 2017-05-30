@@ -1,0 +1,23 @@
+Release 0:
+If subject is on floor x and wants to go up a floor, 
+then subject will press corresponding button to go up.
+elseif subject needs to go down a floor, 
+then subject will press the corresponding button to go down.
+else, if subject is on the correct floor, 
+subject will not press a button and exit the elevator confused as to why he got on in the first place. 
+End
+
+
+
+Release 1:
+
+Car status= in third gear.
+If subject wants to go into a higher gear, 
+then subject will put the transmission in fourth gear.
+elseif subject wants to down shift,
+then subject will shift transmission into second gear.
+elseif the subject wants to stay in third and just cruise,
+then stay in third gear.
+else, (if the subject wants to stop)
+puts the transmission into neutral and comes to a stop to engage ebrake.
+end
