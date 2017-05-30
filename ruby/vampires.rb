@@ -1,8 +1,8 @@
-	loop_run = 1
+loop_run = 0
 	puts "How many employees will be processed?"
 	employees = gets.chomp.to_i
-	while loop_run == employees
-
+	until loop_run == employees
+		loop_run+= 1
 	puts "What is your name?"
 	name = gets.chomp
 	flagged_names = "Tu Fang" || "Drake Cula"
@@ -87,5 +87,4 @@
 	else
 		puts "Results inconclusive"
 	end
-	loop_run+=1
 	end
