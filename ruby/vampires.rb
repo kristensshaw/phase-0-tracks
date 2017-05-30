@@ -71,7 +71,7 @@ loop_run = 0
 				puts "please answer yes or no"
 			end
 	end		
-			
+
 	if 	!(age_input && hates_garlic && doesnt_need_insurance)
 		puts "Probably not a vampire"
 
@@ -87,4 +87,14 @@ loop_run = 0
 	else
 		puts "Results inconclusive"
 	end
+
+	suspicious_allergy = "sunshine"
+	user_input =  ""
+
+	while user_input != suspicious_allergy
+		puts "Do you have any know allergies?"
+		user_input = gets.chomp
+
+	end
+		puts "Probably a vampire"
 	end
