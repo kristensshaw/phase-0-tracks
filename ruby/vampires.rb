@@ -72,29 +72,36 @@ loop_run = 0
 			end
 	end		
 
-	if 	!(age_input && hates_garlic && doesnt_need_insurance)
+	valid_input = false
+	until valid_input
+
+		puts "Name any allergies"
+		allergy_input = gets.chomp
+	
+			if allergy_input == "done"
+				vampire_allergy = false
+				valid_input = true
+
+			elsif allergy_input == "sunshine"
+				vampire_allergy = true
+				valid_input = true
+	
+			end
+	end
+
+	if 	!(age_input && hates_garlic && doesnt_need_insurance || vampire_allergy)
 		puts "Probably not a vampire"
 
-	elsif hates_garlic || doesnt_need_insurance
+	elsif hates_garlic || doesnt_need_insurance || vampire_allergy
 		puts "Wow, probably a vampire"
 
 	elsif age_input && (hates_garlic && doesnt_need_insurance)
 		puts "Almost certainly a vampire"
 	
 	elsif flagged_names == "Drake Cula" || "Tu Fang"
-		puts "Defintely a vampire"
-			
+		puts "Defintely a vampire"	
+					
 	else
 		puts "Results inconclusive"
 	end
-
-	suspicious_allergy = "sunshine"
-	user_input =  ""
-
-	while user_input != suspicious_allergy
-		puts "Do you have any know allergies?"
-		user_input = gets.chomp
-
-	end
-		puts "Probably a vampire"
-	end
+end
