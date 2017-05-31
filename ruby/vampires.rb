@@ -104,4 +104,5 @@ loop_run = 0
 	else
 		puts "Results inconclusive"
 	end
+	puts "Actually nevermind! Let's all be friends"
 end
