@@ -3,19 +3,23 @@ body {
   max-width: 960px;
 }
 .column-1 {
-  background-color: blue;
+  background-color: silver;
   width: 48%;
   display: inline-block;
   vertical-align: top;
   float: left;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .column-2 {
-   background-color: yellow;
+   background-color: silver;
    width: 48%;
    display: inline-block;
    vertical-align: top;
    float: right;
+   padding: 20px;
+   box-sizing: border-box;
 }
 
 footer {
