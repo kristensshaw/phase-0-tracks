@@ -16,6 +16,9 @@ loop_run = 0
 		elsif listed_name == "Drake Cula"
 			valid_input = true
 			vamp_name =  true
+		else listed_name
+			valid_input = true
+			vamp_name = false
 		end
 	end
 
@@ -101,17 +104,26 @@ loop_run = 0
 			end
 	end
 
-	if 	!(age_input && hates_garlic && doesnt_need_insurance || vampire_allergy || vamp_name)
+	if 	vamp_name 
+		puts "Definitely a vampire"	
+
+	elsif !(age_input) && (hates_garlic || doesnt_need_insurance)
 		puts "Probably not a vampire"
 
-	elsif hates_garlic || doesnt_need_insurance || vampire_allergy
+	elsif !(age_input) && !(vampire_allergy) && (hates_garlic && doesnt_need_insurance)
+		puts "NOT a vampire"
+
+	elsif  !(doesnt_need_insurance) && age_input && hates_garlic
 		puts "Wow, probably a vampire"
 
-	elsif age_input && (hates_garlic && doesnt_need_insurance)
+	elsif age_input && doesnt_need_insurance && !(hates_garlic)
+		puts "Probably a vampire"
+
+	elsif vampire_allergy
+		puts "Probably a vampire"
+		
+	elsif age_input && hates_garlic && doesnt_need_insurance
 		puts "Almost certainly a vampire"
-	
-	elsif vamp_name 
-		puts "Defintely a vampire"	
 					
 	else
 		puts "Results inconclusive"
