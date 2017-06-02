@@ -19,7 +19,7 @@ end
 
 encrypt("password password")
 
-#Use for loop to cycle througgit h each letter of the encrypted password.
+#Use for loop to cycle through each letter of the encrypted password.
 #Get the index of each character from the password in the alphabet.
 #Use if statement to check if the character is a space or not.
 #Subtract 1 from the alphabet index and use that to reassign each letter
