@@ -5,15 +5,18 @@ loop_run = 0
 		loop_run+= 1
 
 	valid_input = false
+	until valid_input
+
 	puts "What is your name?"
-	vampire_names = gets.chomp
-	
-	if vampire_names == "Tu Fang"
-	valid_input = true
+	listed_name = gets.chomp
+		if listed_name == "Tu Fang"
+			valid_input = true
+			vamp_name = true
 
-	elsif vampire_names == "Drake Cula"
-	valid_input = true
-
+		elsif listed_name == "Drake Cula"
+			valid_input = true
+			vamp_name =  true
+		end
 	end
 
 	puts "How old are you in years?"
@@ -98,20 +101,21 @@ loop_run = 0
 			end
 	end
 
-	if 	!(age_input || dob_input && hates_garlic && doesnt_need_insurance || vampire_allergy || vampire_names)
+	if 	!(age_input && hates_garlic && doesnt_need_insurance || vampire_allergy || vamp_name)
 		puts "Probably not a vampire"
 
-	elsif age_input && (dob_input || hates_garlic || doesnt_need_insurance || vampire_allergy)
+	elsif hates_garlic || doesnt_need_insurance || vampire_allergy
 		puts "Wow, probably a vampire"
 
 	elsif age_input && (hates_garlic && doesnt_need_insurance)
 		puts "Almost certainly a vampire"
 	
-	elsif vampire_names 
+	elsif vamp_name 
 		puts "Defintely a vampire"	
 					
 	else
 		puts "Results inconclusive"
 	end
+
 	puts "Actually nevermind! Let's all be friends"
-end
+	end
