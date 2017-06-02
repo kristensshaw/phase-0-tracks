@@ -3,9 +3,24 @@ loop_run = 0
 	employees = gets.chomp.to_i
 	until loop_run == employees
 		loop_run+= 1
+
+	valid_input = false
+	until valid_input
+
 	puts "What is your name?"
-	name = gets.chomp
-	flagged_names = "Tu Fang" || "Drake Cula"
+	listed_name = gets.chomp
+		if listed_name == "Tu Fang"
+			valid_input = true
+			vamp_name = true
+
+		elsif listed_name == "Drake Cula"
+			valid_input = true
+			vamp_name =  true
+		else listed_name
+			valid_input = true
+			vamp_name = false
+		end
+	end
 
 	puts "How old are you in years?"
 	age = gets.chomp.to_i
@@ -89,20 +104,30 @@ loop_run = 0
 			end
 	end
 
-	if 	!(age_input && hates_garlic && doesnt_need_insurance || vampire_allergy)
+	if 	vamp_name 
+		puts "Definitely a vampire"	
+
+	elsif !(age_input) && (hates_garlic || doesnt_need_insurance)
 		puts "Probably not a vampire"
 
-	elsif hates_garlic || doesnt_need_insurance || vampire_allergy
+	elsif !(age_input) && !(vampire_allergy) && (hates_garlic && doesnt_need_insurance)
+		puts "NOT a vampire"
+
+	elsif  !(doesnt_need_insurance) && age_input && hates_garlic
 		puts "Wow, probably a vampire"
 
-	elsif age_input && (hates_garlic && doesnt_need_insurance)
+	elsif age_input && doesnt_need_insurance && !(hates_garlic)
+		puts "Probably a vampire"
+
+	elsif vampire_allergy
+		puts "Probably a vampire"
+		
+	elsif age_input && hates_garlic && doesnt_need_insurance
 		puts "Almost certainly a vampire"
-	
-	elsif flagged_names == "Drake Cula" || "Tu Fang"
-		puts "Defintely a vampire"	
 					
 	else
 		puts "Results inconclusive"
 	end
+
 	puts "Actually nevermind! Let's all be friends"
-end
+	end
