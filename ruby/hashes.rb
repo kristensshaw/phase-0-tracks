@@ -23,6 +23,16 @@
 	puts "Do you want a lot of sun in the house or no?"
 		sun_pref = gets.chomp
 
+	special_requests = []
+	puts "Please list any special requests or ideas that will help us with perspective of what you want. Type 'done' when finished"
+
+	loop do
+		request_input = gets.chomp
+		break if request_input == "done"
+		special_requests << request_input
+	end
+
+
 interior_design = {
 	
 	name: name_input,
@@ -31,10 +41,11 @@ interior_design = {
 	decor_theme: decor_pref,
 	favorite_color: color_pref,
 	sun_preference: sun_pref,
-
+	special_req: special_requests
 }
 
 p interior_design
+
 
 	puts "Any corrections need to be made? If everything is correct, enter 'none'. If you need to make a correction, type 'yes'"
 	user_input = gets.chomp
@@ -79,4 +90,4 @@ p interior_design
 			p interior_design
 		end
 
-
+		puts 
