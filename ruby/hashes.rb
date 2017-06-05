@@ -3,6 +3,7 @@
 # print out the client response
 # be able to update key for user and allow "none" to skip update
 # print updated version. 
+	puts "Interior Design Form"
 	puts "Welcome to the interior design form, please fill out"
 
 	puts "What is your name?"
