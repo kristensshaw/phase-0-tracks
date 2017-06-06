@@ -3,10 +3,14 @@ numbers = ["1", "4", "6", "9"]
 new_num = []
 puts "original data"
 p numbers
+p new_num
+
 numbers.each do |number|
 new_num << number.next
-p new_num
 end
+puts "After .each call"
+p numbers
+p new_num
 
 #use .map
 boat_animals = ["cat", "dog", "cow", "sheep"]
