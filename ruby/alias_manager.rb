@@ -1,5 +1,6 @@
 @vowels = ["a", "e", "i", "o", "u"]
-@consonants = ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"]
+# @consonants = ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"]
+@consonants = ("a".."z").to_a - @vowels
 
 def new_vowel(letter)
   i = 0
@@ -13,7 +14,6 @@ def new_vowel(letter)
   end
 end
 
-
 def new_consonant(letter)
   i = 0
   while i < (@consonants.length)
@@ -26,29 +26,28 @@ def new_consonant(letter)
   end
 end
 
+def alias_letter(character)
+    if @vowels.include?(character)
+        new_vowel(character)
+    elsif @consonants.include?(character)
+        new_consonant(character)
+    end
+end
 
 def alias_maker(name)
-    name.downcase!
-    first_name = name.split(" ")[0]
-    last_name = name.split(" ")[1]
+    names = name.downcase.split(" ")
+    first_name = names[0]
+    last_name = names[1]
 
     new_first_name = last_name.chars.map do |i|
-        if @vowels.include?(i)
-            new_vowel(i)
-        elsif @consonants.include?(i)
-            new_consonant(i)
-        end
+        alias_letter(i)
     end
-
 
     new_last_name = first_name.chars.map do |i|
-        if @vowels.include?(i)
-            new_vowel(i)
-        elsif @consonants.include?(i)
-            new_consonant(i)
-        end
+        alias_letter(i)
     end
-   new_first_name.join.capitalize! + " " + new_last_name.join.capitalize!
+    
+    new_first_name.join.capitalize! + " " + new_last_name.join.capitalize!
 end
 
 puts "what is your name"
