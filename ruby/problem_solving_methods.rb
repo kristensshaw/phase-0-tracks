@@ -1,15 +1,18 @@
+@arr = [2, 4, 6, 8]
 
-def find_it(array_num)
-my_arr = [15, 8, 3, 2, 9]
-i = 0
-    while i < my_arr.length
-    puts i
-    i+= 1
-	end
+def find_it(anum)
+	i = 0
+  while i < @arr.length
+    if @arr[i] == anum
+        return i
+    end
+    i += 1
+  end
 end
-puts find_it(8)
 
+p find_it(2)
 
+# release 1
 def fib(x)
 	n= x-2
 	n.times.each_with_object([0,1]) {|num, obj| obj << obj[-2] + obj[-1]}
