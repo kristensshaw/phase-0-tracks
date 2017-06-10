@@ -77,20 +77,59 @@ p sorted_zombie_supplies
 # zombie_apocalypse_supplies. Do not use any special built-in methods.
 # For instance: are boots in your list of supplies?
 # ----
+zombie_apocalypse_supplies = ["hatchet", "rations", "water jug", "binoculars", "shotgun", "compass", "CB radio", "batteries"]
+
+puts "What do you want to check?"
+check_item = gets.chomp
+found = false
+zombie_apocalypse_supplies.each do |supply|
+
+	if check_item == supply
+		found = true
+		break
+	end
+end
+if found 
+	puts "#{check_item} is in the list of supplies"
+else		
+	puts "#{check_item} is NOT in the list"
+end
 
 # 4. You can't carry too many things, you've only got room in your pack for 5.
 # Remove items in your zombie_apocalypse_supplies in any way you'd like,
 # leaving only 5. Do not use any special built-in methods.
 # ----
+zombie_apocalypse_supplies = ["hatchet", "rations", "water jug", "binoculars", "shotgun", "compass", "CB radio", "batteries"]
+
+def delete_item(item, supplies)
+	supplies.each_index do |supply_index|
+		if item == supplies[supply_index]
+			supplies.delete_at(supply_index)
+			break
+		end
+	end
+end
+
+while zombie_apocalypse_supplies.length > 5
+	puts "What do you want to remove?"
+	check_item = gets.chomp
+	delete_item(check_item, zombie_apocalypse_supplies)
+end
+p zombie_apocalypse_supplies
+
 
 # 5. You found another survivor! This means you can combine your supplies.
 # Create a new combined supplies list out of your zombie_apocalypse_supplies
 # and their supplies below. You should get rid of any duplicate items.
 # Find the built-in method that helps you accomplish this in the Ruby
 # documentation for Arrays.
-other_survivor_supplies = [ "warm clothes", "rations", "compass", "camp stove",
-                            "solar battery", "flashlight"]
-# ----
+
+zombie_apocalypse_supplies = ["hatchet", "rations", "water jug", "binoculars", "shotgun", "compass", "CB radio", "batteries"]
+other_survivor_supplies = ["warm clothes", "rations", "compass", "camp stove" "solar battery", "flashlight"]
+
+combined_array = zombie_apocalypse_supplies + other_survivor_supplies
+p combined_array.uniq
+
 
 # Hash Drills
 
