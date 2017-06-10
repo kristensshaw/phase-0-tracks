@@ -163,12 +163,28 @@ end
 # 2. Keep only animals in extinct_animals if they were extinct before
 # the year 2000. Do not use any special built-in methods.
 # ----
+def delete_item(delete_year, list)
+	list.each do |animal, year|
+		if year >= delete_year
+			list.delete(animal)
+		end
+	end
+end
+
+delete_item(2000, extinct_animals)
+
+p extinct_animals
 
 # 3. Our calculations were completely off, turns out all of those animals went
 # extinct 3 years before the date provided. Update the values in extinct_animals
 # so they accurately reflect what year the animal went extinct.
 # Do not use any special built-in methods.
 # ----
+extinct_animals.each do |animal, year|
+	new_year = year - 3
+	extinct_animals[animal] = new_year
+end
+p extinct_animals
 
 # 4. You've heard that the following animals might be extinct, but you're not sure.
 # Check if they're included in extinct_animals, one by one:
@@ -177,6 +193,22 @@ end
 # "Saiga Antelope"
 # Do not use any special built-in methods.
 # ----
+
+puts "What do you want to check?"
+check_item = gets.chomp
+found = false
+extinct_animals.each do |animal, year|
+
+	if check_item == animal
+		found = true
+		break
+	end
+end
+if found 
+	puts "#{check_item} is in the list of supplies"
+else		
+	puts "#{check_item} is NOT in the list"
+end
 
 # 5. We just found out that the Passenger Pigeon is actually not extinct!
 # Remove them from extinct_animals and return the key value pair as a two item array.
