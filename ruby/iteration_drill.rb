@@ -1,14 +1,24 @@
 
-
 zombie_apocalypse_supplies = ["hatchet", "rations", "water jug", "binoculars",
                               "shotgun", "compass", "CB radio", "batteries"]
-listed_supplies = []
+
+# 1. Iterate through the zombie_apocalypse_supplies array,
+# printing each item in the array separated by an asterisk
+# ----
 
 zombie_apocalypse_supplies.each do |supply|
-
-	listed_supplies << supply.join("8")
+	puts "*" + "#{supply}" + "*"
 end
-puts listed_supplies
+#  
+# zombie_apocalypse_supplies = ["hatchet", "rations", "water jug", "binoculars",
+#                               "shotgun", "compass", "CB radio", "batteries"]
+# listed_supplies = []
+
+# zombie_apocalypse_supplies.each do |supply|
+
+# 	listed_supplies << supply.join("8")
+# end
+# puts listed_supplies
 
 # 2. In order to keep yourself organized, sort your zombie_apocalypse_supplies
 # in alphabetical order. Do not use any special built-in methods.
@@ -146,6 +156,9 @@ extinct_animals = {
 # 1. Iterate through extinct_animals hash, printing each key/value pair
 # with a dash in between the key and value, and an asterisk between each pair.
 # ----
+extinct_animals.each do |animal, year|
+	puts "*" + "#{animal}" + "-" + "#{year}" + "*"
+end
 
 # 2. Keep only animals in extinct_animals if they were extinct before
 # the year 2000. Do not use any special built-in methods.
