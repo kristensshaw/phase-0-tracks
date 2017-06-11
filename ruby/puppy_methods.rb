@@ -5,8 +5,17 @@ class Puppy
     toy
   end
 
+
+  def speak(woofs)
+  	woofs.times do |x|
+  		puts "woof"
+  	end
+  end
+
 end
 
 tundra = Puppy.new
-tundra.fetch("ball")
 
+tundra.speak(3)
+
+tundra.fetch("ball")
