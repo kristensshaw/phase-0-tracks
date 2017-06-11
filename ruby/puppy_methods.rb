@@ -7,3 +7,6 @@ class Puppy
 
 end
 
+tundra = Puppy.new
+tundra.fetch("ball")
+
