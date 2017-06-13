@@ -11,7 +11,7 @@ class Santa
 
 		reindeer_ranking = ["Rudolph", "Dasher", "Dancer", "Prancer", "Vixen", "Comet", "Cupid", "Donner", "Blitzen"]
 		
-		@age = 0
+		@age = age
 		# random age in range
 	end
 
@@ -30,11 +30,11 @@ class Santa
 	def gets_mad_at(reindeer_name)
 		reindeer_ranking = ["Rudolph", "Dasher", "Dancer", "Prancer", "Vixen", "Comet", "Cupid", "Donner", "Blitzen"]
 		reindeer_ranking.each_index do |reindeer_name_index|
-			if reindeer_name == reindeer_ranking[reindeer_name_index]
-			reindeer_ranking.delete_at(reindeer_name_index)
+			if reindeer_name.downcase == reindeer_ranking[reindeer_name_index].downcase
+				reindeer_ranking << reindeer_ranking.delete_at(reindeer_name_index)
 				break
 			end
-			reindeer_ranking << reindeer_name
+			# reindeer_ranking << reindeer_name
 		end
 		puts reindeer_ranking
 	end
@@ -73,28 +73,65 @@ end
 
 gender = ["agender", "female", "bigender", "male", "female", "gender fluid", "N/A"]
 ethnicity = ["black", "Latino", "white", "Japanese-African", "prefer not to say", "Mystical Creature (unicorn)", "N/A", "PURPLE"]
+age = (0..140).to_a
 santas = []
-rand_gender = gender.sample
-rand_ethnicity = ethnicity.sample
 
-ethnicity.each do |type, breed, age|
-# ethnicity.length.times do |type, breed, age|
-	santas << Santa.new(rand_gender, rand_ethnicity, age)
+until santas.length == 100
+	rand_gender = gender.sample	
+	rand_ethnicity = ethnicity.sample
+	rand_age = age.sample
+	santas << Santa.new(rand_gender, rand_ethnicity, rand_age)
 end
 p santas
+
+# or to eliminate any possible duplicates in the sample use the code below.
+
+# until santas.length == 10
+# 	rand_gender = gender.sample	
+# 	rand_ethnicity = ethnicity.sample
+# 	rand_age = age.sample
+# 	santas << Santa.new(rand_gender, rand_ethnicity, rand_age)
+# 	santas.uniq!
+# end
+# p santas
+
+
+# def random_gender(type)
+# 	i = 0
+# 	while i < 20
+# 		rand_gender = []
+# 		gender.each do |type|
+# 			rand_gender << gender.sample
+# 		end
+# 		i+= 1
+# 	end
+# 	puts rand_gender
+# end
+	
+# def random_ethnicity(type)
+# 	ethnicity.each do |type|
+# 		rand_ethnicity = ethnicity.sample
+# 	end
+# end
+# ethnicity.each do |breed|
+# # ethnicity.length.times do |type, breed, age|
+# 	santas << Santa.new(rand_ethnicity)
+# end
+# p santas
+
 
 # santas.each do |santa|
 # 	santa.speak
 # end
 
 # This is just the practice stuff to see if all the changes worked
-# nick = Santa.new("male", "white", 5)
-# nick.celebrate_birthday(10)
-# nick.age
+nick = Santa.new("male", "white", 5)
+nick.celebrate_birthday(10)
+nick.age
 
-# nick.gets_mad_at("Dancer")
-# nick.speak
-# nick.gender = "female"
-# nick.speak
-# puts "Santa is #{nick.age} and is #{nick.ethnicity}"
+nick.gets_mad_at("dancer")
+nick.speak
+nick.gender = "female"
+nick.speak
+puts "Santa is #{nick.age} and is #{nick.ethnicity}"
 
