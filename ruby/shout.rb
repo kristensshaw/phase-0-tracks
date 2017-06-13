@@ -1,8 +1,8 @@
 
 module Shout
 
-	def self.yell_angrily(words)
-		puts words + "!!!" + " :("
+	def yell_angrily(words)
+		words + "!!!" + " :("
 	end
 end
 
@@ -13,3 +13,4 @@ end
 kristen = Angry_Person.new
 
 kristen.yell_angrily("WTF, mate")
+Angry_Person.yell_angrily('WTF')
