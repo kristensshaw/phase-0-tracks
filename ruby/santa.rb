@@ -1,5 +1,5 @@
 class Santa
-	attr_reader :age, :ethnicity
+	attr_reader :age, :ethnicity, :reindeer_ranking
 	attr_accessor :gender
 
 	def initialize(gender, ethnicity, age)
@@ -9,7 +9,7 @@ class Santa
 		@ethnicity = ethnicity
 		# @ethnicity = ["black", "Latino", "white", "Japanese-African", "prefer not to say", "Mystical Creature (unicorn)", "N/A", "PURPLE"]
 
-		reindeer_ranking = ["Rudolph", "Dasher", "Dancer", "Prancer", "Vixen", "Comet", "Cupid", "Donner", "Blitzen"]
+		@reindeer_ranking = ["Rudolph", "Dasher", "Dancer", "Prancer", "Vixen", "Comet", "Cupid", "Donner", "Blitzen"]
 		
 		@age = age
 		# random age in range
@@ -28,7 +28,6 @@ class Santa
 	end
 
 	def gets_mad_at(reindeer_name)
-		reindeer_ranking = ["Rudolph", "Dasher", "Dancer", "Prancer", "Vixen", "Comet", "Cupid", "Donner", "Blitzen"]
 		reindeer_ranking.each_index do |reindeer_name_index|
 			if reindeer_name.downcase == reindeer_ranking[reindeer_name_index].downcase
 				reindeer_ranking << reindeer_ranking.delete_at(reindeer_name_index)
@@ -129,6 +128,7 @@ nick = Santa.new("male", "white", 5)
 nick.celebrate_birthday(10)
 nick.age
 
+nick.gets_mad_at("rudolph")
 nick.gets_mad_at("dancer")
 nick.speak
 nick.gender = "female"
