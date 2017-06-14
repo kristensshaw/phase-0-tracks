@@ -10,17 +10,16 @@
 # output: [what data type goes here, array or hash?]
 # Create an empty hash
 # Iterate through the list and add each item to the empty hash.
-
-
-
-def create_list(grocery_list, item)
-	grocery_list[item] = []
-end
 grocery_list = {}
 
 list = "carrots apples cereal pizza"
 # new_list = list.split(' ')
 new_list = list.split(' ')
+
+
+def create_list(grocery_list, item)
+	grocery_list[item] = []
+end
 
 new_list.each do |item|
 	create_list(grocery_list, item)
@@ -99,6 +98,21 @@ def pretty_list(grocery_list)
 	grocery_list.each do |item, qty|
 		puts "#{item}: qty:#{qty}"
 	end
-		puts "*******************"
+	puts "*******************"
 end
 pretty_list(grocery_list)
+
+# On your own, add a commented reflection section to your gps2_2.rb file. Answer the following questions in your reflection:
+
+# What did you learn about pseudocode from working on this challenge?
+	# I learned that writing out the pseudocodeis important to do because you can brain dump rough ideas to see your ideas on paper after you talk to your pair or the rubber ducky. Then onece the ideas on down, you can organize them as necessary and they provide rough checkpoints to keep you on track
+# What are the tradeoffs of using arrays and hashes for this challenge?
+	# We chose hashes because it allows us to assign a quantity to a key in this case item in list. 
+# What does a method return?
+	# The method returns the output of the arguments after the input is submitted
+# What kind of things can you pass into methods as arguments?
+	# You van pass values or strings or keys that are linked to hashes etc
+# How can you pass information between methods?
+	# as long as you pass the called method and the input in the other method.
+# What concepts were solidified in this challenge, and what concepts are still confusing?
+	# The use of using methods separately instead of lumping a lot of things that do things together which will inevitable and then the idea of checking and testing code as you go. good exercise. 
