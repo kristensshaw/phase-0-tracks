@@ -13,8 +13,9 @@
 
 def create_list(items)
 	grocery_items = {}
-	new_items = items.split(' ')
-	new_items.each do |item|
+	# new_items = items.split(' ')
+	# new_items.each do |item|
+	items.split(" ").each do |item|
 		grocery_items[item] = 1
 	end
 	# p grocery_items
