@@ -10,21 +10,28 @@
 # output: [what data type goes here, array or hash?]
 # Create an empty hash
 # Iterate through the list and add each item to the empty hash.
-grocery_list = {}
 
-list = "carrots apples cereal pizza"
-# new_list = list.split(' ')
-new_list = list.split(' ')
-
-
-def create_list(grocery_list, item)
-	grocery_list[item] = []
+def create_list(items)
+	grocery_items = {}
+	new_items = items.split(' ')
+	new_items.each do |item|
+		grocery_items[item] = 1
+	end
+	# p grocery_items
+	pretty_list(grocery_items)
+	return grocery_items
 end
 
-new_list.each do |item|
-	create_list(grocery_list, item)
-end
-p grocery_list
+
+# def create_list(grocery_list, item)
+# 	grocery_list[item] = []
+# end
+
+# new_list.each do |item|
+# 	create_list(grocery_list, item)
+# end
+# p grocery_list
+
 # create_list(grocery_list, "beer")
 # p grocery_list
  
@@ -39,17 +46,15 @@ def add_item(grocery_list, item, qty)
 	grocery_list[item] = qty
 end
 
-add_item(grocery_list, "Ribs", 5)
-add_item(grocery_list, "Beer", 2)
-add_item(grocery_list, "Tomatoes", 3)
-add_item(grocery_list, "Lemonade", 2)
-add_item(grocery_list, "Onions", 1)
-add_item(grocery_list, "Ice Cream", 4)
-p grocery_list
+# add_item(grocery_list, "Ribs", 5)
+# add_item(grocery_list, "Beer", 2)
+# add_item(grocery_list, "Tomatoes", 3)
+# add_item(grocery_list, "Lemonade", 2)
+# add_item(grocery_list, "Onions", 1)
+# add_item(grocery_list, "Ice Cream", 4)
+# p grocery_list
 
 # already incorporated adding functionality to the first method.
-
-
 
 # Method to remove an item from the list
 # input: The hash and item name to be removed.
@@ -62,8 +67,8 @@ def remove_item(grocery_list, item)
 	grocery_list.delete(item)
 end
 
-remove_item(grocery_list, "Lemonade")
-p grocery_list
+# remove_item(grocery_list, "Lemonade")
+# p grocery_list
 
 # Method to update the quantity of an item
 # input: The hash item and quantity to be updated.
@@ -74,13 +79,14 @@ p grocery_list
 def update_qty(grocery_list, item, qty)
 	grocery_list[item] = qty
 end
-update_qty(grocery_list, "Ice Cream", 1)
-update_qty(grocery_list, "carrots", 3)
-update_qty(grocery_list, "apples", 6)
-update_qty(grocery_list, "cereal", 2)
-update_qty(grocery_list, "pizza", 1)
 
-p grocery_list
+# update_qty(grocery_list, "Ice Cream", 1)
+# update_qty(grocery_list, "carrots", 3)
+# update_qty(grocery_list, "apples", 6)
+# update_qty(grocery_list, "cereal", 2)
+# update_qty(grocery_list, "pizza", 1)
+
+# p grocery_list
 # grocery_list.each do |item, quantity|
 # puts "we need #{quantity} #{item}"
 # end
@@ -100,6 +106,24 @@ def pretty_list(grocery_list)
 	end
 	puts "*******************"
 end
+
+grocery_list = create_list("carrots apples cereal pizza")
+
+add_item(grocery_list, "Ribs", 5)
+add_item(grocery_list, "Beer", 2)
+add_item(grocery_list, "Tomatoes", 3)
+add_item(grocery_list, "Lemonade", 2)
+add_item(grocery_list, "Onions", 1)
+add_item(grocery_list, "Ice Cream", 4)
+
+remove_item(grocery_list, "Lemonade")
+
+update_qty(grocery_list, "Ice Cream", 1)
+update_qty(grocery_list, "carrots", 3)
+update_qty(grocery_list, "apples", 6)
+update_qty(grocery_list, "cereal", 2)
+update_qty(grocery_list, "pizza", 1)
+
 pretty_list(grocery_list)
 
 # On your own, add a commented reflection section to your gps2_2.rb file. Answer the following questions in your reflection:
