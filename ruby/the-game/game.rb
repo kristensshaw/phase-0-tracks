@@ -2,6 +2,12 @@
 class Game
 
 	def initialize
+		@secret_word = secret_word
+		@total_chances = total_chances
+		wrong_try = 0
+		# not needed in the class?
+		correct_try = ''
+		# not needed in the class?
 	end
 
 	def obtain_secret_word(secret_word_user1)
@@ -14,6 +20,11 @@ class Game
 		mask = ' '
 		secret_word.chars {|char| mask += (guessed_word.include? char) char : '*'}
 		return mask
+	end
+
+	def chances(secret_word)
+		total_chances = secret_word.length
+		# is .length counting the word itself as a value or each letter in the secret word
 	end
 
 	def prompt_user2
@@ -37,4 +48,24 @@ until game.is_done
 		if secret_word.include? char
 			if correct_try.include? char
 				puts char + "was already entered"
+				# puts "Try again: " + mask_char(secret_word, correct_try)
+
+			else
+				correct_try = correct_try + char
+				mask_char = mask_char(secret_word, correct_try)
+				puts "Well done!" + mask_char
+			end
+
+		else
+			puts "Sorry, that is not correct"
+			wrong_try += 1
+
+			if wrong_try == total total_chances
+				puts "Hope you had good life insurance. You're done"
+				break
+
+			else
 				puts "Try again: " + mask_char(secret_word, correct_try)
+			end
+		end
+end
