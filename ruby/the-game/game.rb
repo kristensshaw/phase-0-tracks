@@ -1,5 +1,5 @@
 
-
+# create a class that contains an inititalize method and mothods to mask the secret word placed by user, identifity if a guess is considered good or bad or if the whole secret word is guessed, count the guesses remaining based off of the iteration through the array of guesses if the character submitted by user two matches any of the character in the secret word, and then a method that tells the game when the game is done or meets the qualifications of the game being done such as if the guesses remaining are 0 or if 
 class Game
 
 	def initialize(secret_word)
@@ -13,7 +13,7 @@ class Game
 	  masked_word_chars = @secret_word.chars.map { |char| (@guesses.include? char)? char : '_'}
 	  masked_word_chars.join(' ')
 	end
-	  
+	  # method to mask the word from the user one input and to convert the masked character to the character if it is indeed correct in the secret word. secret word is string so need to convert to array and rejoin. 
 	  
   def guess(character)
   	@guesses << character
@@ -22,6 +22,7 @@ class Game
     @secret_word.chars.each do |char|
       if !@guesses.include? char
         entire_word_guessed = false
+        # we start with a state of true. as we iterate through the secret word character by character, if our guesses array does not include a secret words character then the idea of the user 2 already guessing the entire word is false. if it is false then this method knows to stop checking to see if the game is done because it is not done based on the whole word not being guessed yet. 
         break
       end
     end
@@ -30,12 +31,12 @@ class Game
     end
 
     if @secret_word.include? character
+      # this portion of the method simply checks the user 2 guess (character selected) and identifies that if the character is indeed one of the characters in the secret word, the the guess is true, otherwise it is false if the character entered is not in the secret word provided. 
       true
     else
       false
     end
   end
-# add in method that counts the number of chances left, possibly have it run as a loop
   
 	def guesses_remaining
     bad_guesses = 0
@@ -47,6 +48,7 @@ class Game
     end
     @total_chances - bad_guesses
   end
+# the bad guesses start at 0. as you iterate through the guesses in the guesses array, you idnore the duplicates to not count against the user2, and check to see if the guess is in the secret word and if it is indeed not, then there is a count or tally against the user 2. the guesses remaining will be the differnce between the total chances and the bad guesses. 
 
   def done
     if (guesses_remaining == 0 || @is_done == true)
@@ -57,35 +59,16 @@ class Game
     end
     # the game is done if we are out of guesses or the flag is set(true)
   end
-
-
- #  def chances
-	# 	# total_chances = obtain_secret_word.length
-	# 	@total_chances = @secret_word.length
-	# 	# total_chances
-	# 	# is .length counting the word itself as a value or each letter in the secret word
-	# end
-
-	# def mask_char(secret_word, guessed_word)
-	# 	mask = ''
-	# 	secret_word.chars { |char| mask += (guessed_word.include? char)? char : '_'}
-	# 	mask
-	# end
-
-	
-	# def prompt_user2
-	# 	puts "Guess what the secret word is:" + mask_char(secret_word, '')
-	# 	# should this be out of the class? 
-	# end
+# this method will determine which conditions will be met to consider the game done. if the guesses remaining are 0 and if the is done flag is set to true/ 
 
 end
 puts "Welcome to 'Oh shit there is a cliff, I better get this right'"
 
-puts "User 1, please enter a word for the game"
+puts "Please enter a word for the game"
 secret_word = gets.chomp
 
 game = Game.new(secret_word)
-
+# create an instance of the game that takes in the user 1 secret word so that the secret word is only entered once
 
 until game.done
   puts "Guess what this is: #{game.masked_word} (you have #{game.guesses_remaining} chances remaining)"
@@ -101,233 +84,10 @@ until game.done
 end
 
 if game.guesses_remaining == 0
-  puts "tough nugs"
+  puts "Sorry, you lost. Tough nugs."
 else
   puts "You survived!"
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# until game.is_done
-#   puts "Guess the word and enter a letter. You have #{total_chances - wrong_try} chances left"
-#   char = gets.chomp
-
-#     if secret_word.include? char
-#       if correct_try.include? char
-#         puts char + "was already entered"
-#         # puts "Try again: " + mask_char(secret_word, correct_try)
-
-#       else
-#         correct_try = correct_try + char
-#         mask_char = mask_char(secret_word, correct_try)
-#         puts "Well done!" + mask_char
-#       end
-
-#     else
-#       puts "Sorry, that is not correct"
-#       wrong_try += 1
-
-#       if wrong_try == total_chances
-#         puts "Hope you had good life insurance. You're done"
-#         break
-
-#       else
-#         puts "Try again: " + mask_char(secret_word, correct_try)
-#       end
-#     end
-# end
-
-
-
-
-
-
-
-
-
-
-
-
-
-# guess = gets.chomp
-
-# game.guess(guess)
-
-# puts game.guesses_remaining
-
-
-
-
-
-
-
-# starts a new game with the methds and parameters in game class
-
-		
-# 		# secret word needs to be able to get the sample word which is out of scope of class.
-# 	end
-# game.obtain_secret_word
-# # prompts the user1 to deliver a word of their choice which is then designated/reassigned to be the secret_word for the rest of the game
-# game.chances
-# puts 'Guess what is:' + mask_char(secret_word, '')	
-
-# until game.is_done
-# 	puts "Guess the word and enter a letter. You have #{total_chances - wrong_try} chances left"
-# 	char = gets.chomp
-
-# 		if secret_word.include? char
-# 			if correct_try.include? char
-# 				puts char + "was already entered"
-# 				# puts "Try again: " + mask_char(secret_word, correct_try)
-
-# 			else
-# 				correct_try = correct_try + char
-# 				mask_char = mask_char(secret_word, correct_try)
-# 				puts "Well done!" + mask_char
-# 			end
-
-# 		else
-# 			puts "Sorry, that is not correct"
-# 			wrong_try += 1
-
-# 			if wrong_try == total_chances
-# 				puts "Hope you had good life insurance. You're done"
-# 				break
-
-# 			else
-# 				puts "Try again: " + mask_char(secret_word, correct_try)
-# 			end
-# 		end
-# end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# class Game
-# 	attr_accessor :correct_try, :wrong_try, :secret_word
-# 	def initialize
-# 		@secret_word = secret_word
-# 		@total_chances = total_chances
-# 		wrong_try = 0
-# 		# not needed in the class?
-# 		correct_try = ''
-# 		# not needed in the class?
-# 		@is_done = false
-# 	end
-
-# 	def obtain_secret_word(secret_word_user1)
-# 		puts "User 1, please enter a word for the game"
-# 		secret_word = gets.chomp
-# 		# secret word needs to be able to get the sample word which is out of scope of class.
-# 	end
-
-# 	def mask_char(secret_word, guessed_word)
-# 		mask = ''
-# 		secret_word.chars { |char| mask += (guessed_word.include? char)? char : '*'}
-# 		return mask
-# 	end
-
-# 	def chances(secret_word)
-# 		total_chances = secret_word.length
-# 		# is .length counting the word itself as a value or each letter in the secret word
-# 	end
-
-# 	def prompt_user2
-# 		puts "Guess what the secret word is:" + mask_char(secret_word, '')
-# 		# should this be out of the class? 
-# 	end
-
-# end
-
-# puts "Welcome to 'Oh shit there is a cliff, I better get this right'"
-# game = Game.new
-# # starts a new game with the methds and parameters in game class
-
-# game.obtain_secret_word
-# # prompts the user1 to deliver a word of their choice which is then designated/reassigned to be the secret_word for the rest of the game.
-	
-# until game.is_done
-# 	puts "Guess the word and enter a letter. You have #{total_chances - wrong_try}"
-# 	char = gets.chomp
-
-# 		if secret_word.include? char
-# 			if correct_try.include? char
-# 				puts char + "was already entered"
-# 				# puts "Try again: " + mask_char(secret_word, correct_try)
-
-# 			else
-# 				correct_try = correct_try + char
-# 				mask_char = mask_char(secret_word, correct_try)
-# 				puts "Well done!" + mask_char
-# 			end
-
-# 		else
-# 			puts "Sorry, that is not correct"
-# 			wrong_try += 1
-
-# 			if wrong_try == total_chances
-# 				puts "Hope you had good life insurance. You're done"
-# 				break
-
-# 			else
-# 				puts "Try again: " + mask_char(secret_word, correct_try)
-# 			end
-# 		end
-# end
+# present an until done loop that will terminate the program when done is true. 
+# print information based on whether something was a good guess of not.
+# then after the loop done and the loop is terminated prints oneof two messages noting that they either survived or lost. 
