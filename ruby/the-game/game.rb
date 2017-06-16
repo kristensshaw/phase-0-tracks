@@ -1,33 +1,64 @@
 
 
 class Game
-  attr_reader :total_chances
-	attr_accessor :correct_try, :wrong_try, :total_chances, :is_done
+
 	def initialize(secret_word)
 		@secret_word = secret_word
+		@total_chances = secret_word.length
 		@guesses = []
-
-
-
-
-
-
-
-		@wrong_try = 0
-		# not needed in the class?
-		@correct_try = ''
-		# not needed in the class?
 		@is_done = false
 	end
   
-  def masked_word
-  	masked_word_chars = @secret_word.chars.map { |char| (@guesses.include? char)? char : '_'}
-  	masked_word_chars.join(' ')
+	def masked_word
+	  masked_word_chars = @secret_word.chars.map { |char| (@guesses.include? char)? char : '_'}
+	  masked_word_chars.join(' ')
+	end
+	  
+	  
+  def guess(character)
+  	@guesses << character
+
+    entire_word_guessed = true
+    @secret_word.chars.each do |char|
+      if !@guesses.include? char
+        entire_word_guessed = false
+        break
+      end
+    end
+    if entire_word_guessed
+      @is_done = true
+    end
+
+    if @secret_word.include? character
+      true
+    else
+      false
+    end
   end
+# add in method that counts the number of chances left, possibly have it run as a loop
   
-  
-  
-  
+	def guesses_remaining
+    bad_guesses = 0
+    @guesses.uniq.each do |guess|
+      if !@secret_word.include? guess
+      # (@secret_word.include? guess)
+        bad_guesses += 1
+      end
+    end
+    @total_chances - bad_guesses
+  end
+
+  def done
+    if (guesses_remaining == 0 || @is_done == true)
+      # put parens around the two conditionals and the parens keeps them isolated so the program doesn't lose track.
+      true
+    else
+      false
+    end
+    # the game is done if we are out of guesses or the flag is set(true)
+  end
+
+
  #  def chances
 	# 	# total_chances = obtain_secret_word.length
 	# 	@total_chances = @secret_word.length
@@ -55,7 +86,25 @@ secret_word = gets.chomp
 
 game = Game.new(secret_word)
 
-puts "Guess what this is:" + game.masked_word
+
+until game.done
+  puts "Guess what this is: #{game.masked_word} (you have #{game.guesses_remaining} chances remaining)"
+  puts "Enter your guess"
+  user_guess = gets.chomp
+
+  good_guess = game.guess(user_guess)
+  if good_guess
+    puts "Well done."
+  else
+    puts "Sorry, that was incorrect."
+  end
+end
+
+if game.guesses_remaining == 0
+  puts "tough nugs"
+else
+  puts "You survived!"
+end
 
 
 
@@ -71,6 +120,60 @@ puts "Guess what this is:" + game.masked_word
 
 
 
+
+
+
+
+
+
+
+
+# until game.is_done
+#   puts "Guess the word and enter a letter. You have #{total_chances - wrong_try} chances left"
+#   char = gets.chomp
+
+#     if secret_word.include? char
+#       if correct_try.include? char
+#         puts char + "was already entered"
+#         # puts "Try again: " + mask_char(secret_word, correct_try)
+
+#       else
+#         correct_try = correct_try + char
+#         mask_char = mask_char(secret_word, correct_try)
+#         puts "Well done!" + mask_char
+#       end
+
+#     else
+#       puts "Sorry, that is not correct"
+#       wrong_try += 1
+
+#       if wrong_try == total_chances
+#         puts "Hope you had good life insurance. You're done"
+#         break
+
+#       else
+#         puts "Try again: " + mask_char(secret_word, correct_try)
+#       end
+#     end
+# end
+
+
+
+
+
+
+
+
+
+
+
+
+
+# guess = gets.chomp
+
+# game.guess(guess)
+
+# puts game.guesses_remaining
 
 
 
@@ -89,7 +192,7 @@ puts "Guess what this is:" + game.masked_word
 # puts 'Guess what is:' + mask_char(secret_word, '')	
 
 # until game.is_done
-# 	puts "Guess the word and enter a letter. You have #{total_chances - wrong_try}"
+# 	puts "Guess the word and enter a letter. You have #{total_chances - wrong_try} chances left"
 # 	char = gets.chomp
 
 # 		if secret_word.include? char
