@@ -48,7 +48,7 @@ class Game
     end
     @total_chances - bad_guesses
   end
-# the bad guesses start at 0. as you iterate through the guesses in the guesses array, you idnore the duplicates to not count against the user2, and check to see if the guess is in the secret word and if it is indeed not, then there is a count or tally against the user 2. the guesses remaining will be the differnce between the total chances and the bad guesses. 
+# the bad guesses start at 0. as you iterate through the guesses in the guesses array, you ignore the duplicates to not count against the user2, and check to see if the guess is in the secret word and if it is indeed not, then there is a count or tally against the user 2. the guesses remaining will be the differnce between the total chances and the bad guesses. 
 
   def done
     if (guesses_remaining == 0 || @is_done == true)
@@ -60,34 +60,4 @@ class Game
     # the game is done if we are out of guesses or the flag is set(true)
   end
 # this method will determine which conditions will be met to consider the game done. if the guesses remaining are 0 and if the is done flag is set to true/ 
-
 end
-puts "Welcome to 'Oh shit there is a cliff, I better get this right'"
-
-puts "Please enter a word for the game"
-secret_word = gets.chomp
-
-game = Game.new(secret_word)
-# create an instance of the game that takes in the user 1 secret word so that the secret word is only entered once
-
-until game.done
-  puts "Guess what this is: #{game.masked_word} (you have #{game.guesses_remaining} chances remaining)"
-  puts "Enter your guess"
-  user_guess = gets.chomp
-
-  good_guess = game.guess(user_guess)
-  if good_guess
-    puts "Well done."
-  else
-    puts "Sorry, that was incorrect."
-  end
-end
-
-if game.guesses_remaining == 0
-  puts "Sorry, you lost. Tough nugs."
-else
-  puts "You survived!"
-end
-# present an until done loop that will terminate the program when done is true. 
-# print information based on whether something was a good guess of not.
-# then after the loop done and the loop is terminated prints oneof two messages noting that they either survived or lost. 
