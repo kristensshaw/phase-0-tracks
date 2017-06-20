@@ -103,8 +103,16 @@ STATE_DATA.each do |state, info|
 end
 
 # # Reflection Section
-What are the differences between the two different hash syntaxes shown in the state_data file?
-What does require_relative do? How is it different from require?
-What are some ways to iterate through a hash?
-When refactoring virus_effects, what stood out to you about the variables, if anything?
-What concept did you most solidify in this challenge?
+# What are the differences between the two different hash syntaxes shown in the state_data file?
+#  there was the style with the => and the :. they seemed to be have the same way. 
+
+# What does require_relative do? How is it different from require?
+# require is a subset of require relative it seems to need more direction in the path to be useful. 
+
+# What are some ways to iterate through a hash?
+# the .each can be used to iterate over a hash. you also do have the option to iterate over the keys or values. 
+
+# When refactoring virus_effects, what stood out to you about the variables, if anything?
+# The fact that there was the @ symbol everywhere more than it needed to be. Also that there was so much of the same stuff everywhere.As long as you could make the same variable information accessible everywhere in the class for each method, one could really clean up house
+
+# What concept did you most solidify in this challenge? Learning how effectively use attr accessor. i need work iterating over hashes. i think the hash in a hash threw me. However, I need to be quicker on my feet and pulling things out of thin air. 
