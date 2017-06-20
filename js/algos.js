@@ -37,3 +37,20 @@ for(var i = 0; i < array.length; i++){
 }
 
 console.log(longestWord);
+
+
+
+
+
+var people = [{name: "Kevin", age: 29}, {name: "Blake", age: 29}];
+
+function compareKeys(name, age){
+  for(var i = 1; i < people.length; i++){
+    if(people[i].name !== people[0].name || people[i].age !== people[0].age) {
+      return false;
+    }
+  }
+  return true;
+}
+
+console.log(compareKeys(people));
