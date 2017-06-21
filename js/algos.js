@@ -115,7 +115,7 @@ console.log(randomWords(3));
 for (var a = 0; a < 10; a++) {
   // a < 10 determines how many times this loop is executed. run the loop 10 times and it will run the loops to randomize numbers to help select letters in the alphabet to create a new word
   // var random_words = randomWords(Math.ceil(Math.random() * 10));
-  var random_words = randomWords(4);
+  var random_words = randomWords(3);
   // create a variable that holds the product of the function randomWords 
   console.log(random_words);
   // we will want to print to the console to see all of the looped produced arrays of random words and varying lengths since it will be random
