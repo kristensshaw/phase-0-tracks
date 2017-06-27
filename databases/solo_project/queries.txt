@@ -44,4 +44,9 @@ Delete an item that meets some condition (you can choose a condition that makes 
 	1|Brent|false|101
 	2|Julie|true|100
 
+Natural join joins two tables naturally so there is no duplications
+	SELECT * FROM reservations NATURAL JOIN rooms;
+	1|Brent|false|101|2
+	2|Julie|true|100|4
+
 	
