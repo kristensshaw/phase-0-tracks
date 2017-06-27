@@ -1,0 +1,58 @@
+Run a SQL query for each of the following:
+
+
+Display the information in one table (either table is fine).
+
+	SELECT * FROM reservations;
+	
+	1|Brent|false|101
+	2|Julie|true|100
+	3|Chris|false|100
+
+Update an item that meets some condition (you can choose a condition that makes sense).
+	
+	UPDATE reservations SET cancellation="true" WHERE 	name="Chris";
+
+	SELECT * FROM reservations;
+
+	1|Brent|false|101
+	2|Julie|true|100
+	3|Chris|true|100
+
+Display the information in both tables using one query.
+
+	SELECT * FROM reservations, rooms WHERE 	reservations.room_id 	= rooms.room_id;
+
+	1|Brent|false|101|101|2
+	2|Julie|true|100|100|4
+	3|Chris|true|100|100|4
+
+Display a narrower selection of columns (fewer columns than all of them, in other words) from both tables using one query.
+
+	SELECT reservations.name, rooms.capacity FROM 	reservations JOIN rooms ON reservations.room_id = 	rooms.room_id;
+
+	Brent|2
+	Julie|4
+	Chris|4
+	
+Delete an item that meets some condition (you can choose a condition that makes sense).
+
+	DELETE FROM reservations WHERE name="Chris";
+
+	SELECT * FROM reservations;
+
+	1|Brent|false|101
+	2|Julie|true|100
+
+Natural join joins two tables naturally so there is no duplications
+	SELECT * FROM reservations NATURAL JOIN rooms;
+	1|Brent|false|101|2
+	2|Julie|true|100|4
+
+Wanted to see when a condition is asked for but is not supported
+	SELECT room_id FROM reservations FULL OUTER JOIN rooms ON reservations.room_id = rooms.room_id;
+	Error: RIGHT and FULL OUTER JOINs are not currently supported
+
+note: as expected but wanted to see what the failings were of trying to impliment a not supported function
+
+	
