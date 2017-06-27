@@ -49,4 +49,10 @@ Natural join joins two tables naturally so there is no duplications
 	1|Brent|false|101|2
 	2|Julie|true|100|4
 
+Wanted to see when a condition is asked for but is not supported
+	SELECT room_id FROM reservations FULL OUTER JOIN rooms ON reservations.room_id = rooms.room_id;
+	Error: RIGHT and FULL OUTER JOINs are not currently supported
+
+note: as expected but wanted to see what the failings were of trying to impliment a not supported function
+
 	
