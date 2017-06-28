@@ -23,10 +23,21 @@ SQL
 db.execute(create_users_table_cmd)
 db.execute(create_items_table_cmd)
 
-
 def create_user(db, name)
   db.execute("INSERT INTO users (name) VALUES (?)", [name])
 end
+
+current_user = nil
+def login(db, login_name)
+  current_user = db.execute("SELECT user_id FROM users WHERE name = ?", [login_name])
+end
+# def create_user(db, supplied_name)
+#   if db.execute(create_users_table_cmd).include? supplied_name
+#     puts "already in there"
+#   else
+#     db.execute("INSERT INTO users (name) VALUES (?)", [name])
+#   end
+# end
 
 def create_list(db, item_name, item_quantity)
   db.execute("INSERT INTO items (item_name, item_quantity) VALUES (?, ?)", [item_name, item_quantity])
@@ -35,12 +46,21 @@ def create_list(db, item_name, item_quantity)
 end
 
 # driver code
-puts "Enter your name to access your list"
-user_name = gets.chomp
+puts "Do you want to register or login"
+user_choice = gets.chomp
 
-create_user(db, user_name)
+  if user_choice == "register"
+    puts "What is your name you want to register?"
+    user_name = gets.chomp
+    create_user(db, user_name)
 
-puts "Welcome to #{user_name}'s list"
+  elsif user_choice == "login"
+    puts "Please enter your registered name"
+    login_name = gets.chomp
+    login(db, login_name)
+  end
+      
+puts "Welcome to your list"
 
   valid_input = false
   until valid_input
@@ -92,6 +112,25 @@ rescue SQLite3::Exception => e
 ensure
     db.close if db
 end
+#   begin
+    
+#     db = SQLite3::Database.open"shopping.db"
+#     db.results_as_hash = true
+        
+#     ary = db.execute "SELECT * FROM users, items JOIN items ON users.item_id = items.item_id"    
+        
+#     ary.each do |row|
+#         printf "%s %s\n", row['item_name'], row['item_quantity']
+#     end
+             
+# rescue SQLite3::Exception => e 
+    
+#     puts "Exception occurred"
+#     puts e
+    
+# ensure
+#     db.close if db
+# end
   
     
 # rescue SQLite3::Exception => e 
