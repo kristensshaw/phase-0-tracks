@@ -1,7 +1,7 @@
 require 'sqlite3'
 
 db = SQLite3::Database.new("shopping.db")
-# db.results_as_hash = true
+db.results_as_hash = true
 
 create_users_table_cmd = <<-SQL
   CREATE TABLE IF NOT EXISTS users (
@@ -67,10 +67,42 @@ puts "Welcome to #{user_name}'s list"
     end
   end
 
+# view_table = <<-SQL
+#   SELECT * FROM users
+# SQL
 
+# db.execute(view_table)
 
-
-
+begin
+    
+    db = SQLite3::Database.open"shopping.db"
+    db.results_as_hash = true
+        
+    ary = db.execute "SELECT * FROM items"    
+        
+    ary.each do |row|
+        printf "%s %s\n", row['item_name'], row['item_quantity']
+    end
+             
+rescue SQLite3::Exception => e 
+    
+    puts "Exception occurred"
+    puts e
+    
+ensure
+    db.close if db
+end
+  
+    
+# rescue SQLite3::Exception => e 
+    
+#     puts "Exception occurred"
+#     puts e
+    
+# ensure
+#     stm.close if stm
+#     db.close if db
+# end
 
 
 
