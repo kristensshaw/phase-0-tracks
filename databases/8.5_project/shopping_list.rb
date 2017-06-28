@@ -24,26 +24,50 @@ db.execute(create_users_table_cmd)
 db.execute(create_items_table_cmd)
 
 
-
-
-
-
-
 def create_user(db, name)
   db.execute("INSERT INTO users (name) VALUES (?)", [name])
 end
 
-# def create_list(db, list_hash, items, quantity)
-#   db.execute("INSERT INTO items (item_name, item_quantity) VALUES (?, ?)", [item_name, item_quantity])
-#   list_hash = {}
-#   list_hash[item] = []
-# end
+def create_list(db, item_name, item_quantity)
+  db.execute("INSERT INTO items (item_name, item_quantity) VALUES (?, ?)", [item_name, item_quantity])
+  list_hash = {}
+  list_hash[item_name] = item_quantity
+end
 
 # driver code
 puts "Enter your name to access your list"
 user_name = gets.chomp
 
 create_user(db, user_name)
+
+puts "Welcome to #{user_name}'s list"
+
+  valid_input = false
+  until valid_input
+
+  puts "What item would you like to add?"
+  item_name = gets.chomp
+
+  puts "How many do you need?"
+  item_quantity = gets.chomp.to_i
+
+  create_list(db, item_name, item_quantity)
+
+  puts "If you need to enter another item, type yes. If that was all, type quit"
+  user_answer = gets.chomp
+
+    if user_answer == "yes"
+      valid_input = false
+
+    elsif user_answer == "quit"
+      valid_input = true
+
+    else
+      puts "Unrecognizable answer. Try again"
+    end
+  end
+
+
 
 
 
