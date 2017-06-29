@@ -5,31 +5,48 @@ db.results_as_hash = true
 
 create_items_table_cmd = <<-SQL
   CREATE TABLE IF NOT EXISTS items (
-    item_id INTEGER PRIMARY KEY, 
+    item_id INTEGER PRIMARY KEY AUTOINCREMENT, 
     item_name VARCHAR(255),
     item_quantity INT,
-    user_id INT, 
-    FOREIGN KEY (user_id) REFERENCES users(id)
-  )
-SQL
-
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES users(person_id)
+    )
+  SQL
+# create_items_table_cmd = <<-SQL
+#   CREATE TABLE IF NOT EXISTS items (
+#     item_id INTEGER PRIMARY KEY, 
+#     item_name VARCHAR(255),
+#     item_quantity INT,
+#     user_id INT, 
+#     FOREIGN KEY (user_id) REFERENCES users(person_id)
+#   )
+# SQL
 create_users_table_cmd = <<-SQL
   CREATE TABLE IF NOT EXISTS users (
-    id INTEGER PRIMARY KEY,
+    person_id INTEGER PRIMARY KEY AUTOINCREMENT,
     name VARCHAR(255)
-  )
-SQL
+    )
+  SQL
 
-db.execute(create_users_table_cmd)
+# create_users_table_cmd = <<-SQL
+#   CREATE TABLE IF NOT EXISTS users (
+#     person_id INTEGER PRIMARY KEY,
+#     name VARCHAR(255)
+#   )
+# SQL
+
 db.execute(create_items_table_cmd)
+db.execute(create_users_table_cmd)
 
 def create_user(db, login_name)
-  db.execute("INSERT INTO users (name) VALUES (?)", [login_name])
+  db.execute("INSERT INTO users(name) VALUES (?)", [login_name])
 end
 
-current_user = nil
+# current_user = nil
 def login(db, login_name)
-  current_user = db.execute("SELECT user_id FROM users WHERE name = ?", [login_name])
+  # current_user = db.execute("SELECT user_id FROM users WHERE name = ?", [login_name])
+  # db.execute("SELECT user_id FROM users WHERE name = ?", [login_name])
+  db.execute("SELECT user_id FROM users WHERE name = ?", [login_name])
 end
 # def create_user(db, supplied_name)
 #   if db.execute(create_users_table_cmd).include? supplied_name
@@ -100,22 +117,22 @@ begin
     db.results_as_hash = true
         
     # ary = db.execute ("SELECT * FROM items")
-    # ary = db.execute ("SELECT * FROM items WHERE user_id = 1")
+    # ary = db.execute ("SELECT * FROM items WHERE person_id = 1")
     # ary = db.execute ("SELECT * FROM items WHERE user_id = id")  
     # ary = db.execute ("SELECT * FROM items, users WHERE items.user_id = users.id")  
-    ary = db.execute ("SELECT items.item_name, items.item_quantity, users.name FROM items JOIN users ON items.user_id = users.id")
+    ary = db.execute ("SELECT items.item_name, items.item_quantity FROM items JOIN users ON items.user_id = users.person_id")
         
     ary.each do |row|
         printf "%s %s\n", row['item_name'], row['item_quantity']
     end
              
-# rescue SQLite3::Exception => e 
+rescue SQLite3::Exception => e 
     
-#     puts "Exception occurred"
-#     puts e
+    puts "Exception occurred"
+    puts e
     
-# ensure
-#     db.close if db
+ensure
+    db.close if db
 end
 #   begin
     
