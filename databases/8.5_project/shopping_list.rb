@@ -5,10 +5,8 @@ db.results_as_hash = true
 
 create_users_table_cmd = <<-SQL
   CREATE TABLE IF NOT EXISTS users (
-    user_id INTEGER PRIMARY KEY,
-    name VARCHAR(255),
-    item_id INT, 
-    FOREIGN KEY (item_id) REFERENCES items(item_id)
+    id INTEGER PRIMARY KEY,
+    name VARCHAR(255)
   )
 SQL
 
@@ -16,15 +14,17 @@ create_items_table_cmd = <<-SQL
   CREATE TABLE IF NOT EXISTS items (
     item_id INTEGER PRIMARY KEY, 
     item_name VARCHAR(255),
-    item_quantity INT
+    item_quantity INT,
+    user_id INT, 
+    FOREIGN KEY (user_id) REFERENCES users(id)
   )
 SQL
 
 db.execute(create_users_table_cmd)
 db.execute(create_items_table_cmd)
 
-def create_user(db, name)
-  db.execute("INSERT INTO users (name) VALUES (?)", [name])
+def create_user(db, login_name)
+  db.execute("INSERT INTO users (name) VALUES (?)", [login_name])
 end
 
 current_user = nil
@@ -51,8 +51,8 @@ user_choice = gets.chomp
 
   if user_choice == "register"
     puts "What is your name you want to register?"
-    user_name = gets.chomp
-    create_user(db, user_name)
+    login_name = gets.chomp
+    create_user(db, login_name)
 
   elsif user_choice == "login"
     puts "Please enter your registered name"
@@ -60,7 +60,7 @@ user_choice = gets.chomp
     login(db, login_name)
   end
       
-puts "Welcome to your list"
+puts "Welcome to #{login_name}'s list"
 
   valid_input = false
   until valid_input
@@ -84,6 +84,7 @@ puts "Welcome to your list"
 
     else
       puts "Unrecognizable answer. Try again"
+      break
     end
   end
 
@@ -98,19 +99,20 @@ begin
     db = SQLite3::Database.open"shopping.db"
     db.results_as_hash = true
         
-    ary = db.execute "SELECT * FROM items"    
+    # ary = db.execute ("SELECT * FROM items WHERE user_id = id")  
+    ary = db.execute ("SELECT * FROM items, users WHERE items.user_id = users.id")  
         
     ary.each do |row|
         printf "%s %s\n", row['item_name'], row['item_quantity']
     end
              
-rescue SQLite3::Exception => e 
+# rescue SQLite3::Exception => e 
     
-    puts "Exception occurred"
-    puts e
+#     puts "Exception occurred"
+#     puts e
     
-ensure
-    db.close if db
+# ensure
+#     db.close if db
 end
 #   begin
     
