@@ -41,7 +41,7 @@ end
 
 def create_list(db, item_name, item_quantity)
   db.execute("INSERT INTO items (item_name, item_quantity) VALUES (?, ?)", [item_name, item_quantity])
-  list_hash = {}
+  list_hash= {}
   list_hash[item_name] = item_quantity
 end
 
@@ -99,8 +99,10 @@ begin
     db = SQLite3::Database.open"shopping.db"
     db.results_as_hash = true
         
+    ary = db.execute ("SELECT * FROM items")
+    # ary = db.execute ("SELECT * FROM items WHERE user_id = 1")
     # ary = db.execute ("SELECT * FROM items WHERE user_id = id")  
-    ary = db.execute ("SELECT * FROM items, users WHERE items.user_id = users.id")  
+    # ary = db.execute ("SELECT * FROM items, users WHERE items.user_id = users.id")  
         
     ary.each do |row|
         printf "%s %s\n", row['item_name'], row['item_quantity']
