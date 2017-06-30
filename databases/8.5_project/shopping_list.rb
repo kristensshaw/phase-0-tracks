@@ -61,7 +61,7 @@ end
 #   end
 # end
 
-def create_list(db, item_name, item_quantity, current_user)
+def add_item(db, item_name, item_quantity, current_user)
   db.execute("INSERT INTO items (item_name, item_quantity, user_id) VALUES (?, ?, ?)", [item_name, item_quantity, current_user])
   # list_hash = {}
   # list_hash[item_name] = item_quantity
@@ -69,8 +69,9 @@ end
 
 
 # create delete item method
-
-
+def delete_item(db, item_name, current_user)
+  db.execute("DELETE FROM items WHERE item_name = ? AND user_id = ?", [item_name, current_user])
+end
 # current_user = login(db, "Nano")
 # create_list(db, "carrots", 1, current_user)
 
@@ -108,8 +109,9 @@ end
 
       
 puts "Welcome to #{login_name}'s list"
-
+puts
 print_list(db, current_user)
+puts
 
 # handle incorrect inputs
 should_stop = false
@@ -124,16 +126,24 @@ until should_stop
     puts "How many do you need?"
     item_quantity = gets.chomp.to_i
 
-    create_list(db, item_name, item_quantity, current_user)
+    add_item(db, item_name, item_quantity, current_user)
 
   elsif response == "view"
+    puts
     print_list(db, current_user)
+
+  elsif response == "delete"
+    puts "What do you want to delete?"
+    item_name = gets.chomp
+
+    delete_item(db, item_name, current_user)  
     
   elsif response == "exit"
     should_stop = true
   end
+  puts
 end
-print_list(db, current_user)
+
 # # view_table = <<-SQL
 # #   SELECT * FROM users
 # # SQL
