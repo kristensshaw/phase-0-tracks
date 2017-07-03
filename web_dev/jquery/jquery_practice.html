@@ -16,6 +16,13 @@ $(document).ready(function(){
             $("p:first").css("background-color", "blue");
          });
       </script>
+      <script>
+$(document).ready(function(){
+    $("#p1").mouseleave(function(){
+        alert("Bye!");
+    });
+});
+</script>
    </head>
   
    <body>
@@ -26,8 +33,8 @@ $(document).ready(function(){
 
       <button>Click me</button>
       <div>
-         <p class = "myclass">This is a paragraph.</p>
-         <p id = "myid">This is second paragraph.</p>
+         <p class = "myclass">This is the next paragraph.</p>
+         <p id = "p1">This is second paragraph.</p>
          <p>This is third paragraph.</p>
       </div>
    </body>
